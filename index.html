@@ -1,10 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Prato Real — Cardápio 3D</title>
+<title>Prato Real</title>
 
 <script type="module"
 src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.1.0/model-viewer.min.js">
@@ -13,288 +13,340 @@ src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.1.0/model-viewer.min.j
 <style>
 
 *{
-box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-margin:0;
-background:#f7f7f5;
-font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-color:#151515;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f5f5f5;
+    color:#222;
 }
 
+/* =========================
+   CABEÇALHO
+========================= */
+
 header{
-height:70px;
-background:#fff;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 20px;
-border-bottom:1px solid #eee;
-position:sticky;
-top:0;
-z-index:10;
+    background:#fff;
+    padding:18px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #eee;
+    position:sticky;
+    top:0;
+    z-index:10;
 }
 
 .logo{
-font-size:24px;
-font-weight:900;
-letter-spacing:-1px;
-}
-
-.logo span{
-font-weight:400;
+    font-size:25px;
+    font-weight:900;
+    color:#f97316;
 }
 
 .cart{
-background:#111;
-color:#fff;
-border:0;
-border-radius:12px;
-padding:10px 15px;
-font-weight:800;
+    background:#f97316;
+    color:white;
+    border:none;
+    padding:11px 16px;
+    border-radius:12px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-main{
-max-width:600px;
-margin:auto;
-padding:20px;
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:25px 18px 50px;
 }
 
-/* HERO */
+/* =========================
+   RESTAURANTE
+========================= */
 
-.hero{
-background:#111;
-color:#fff;
-border-radius:25px;
-padding:28px 24px;
-margin-bottom:28px;
+.restaurant{
+    text-align:center;
+    margin-bottom:25px;
 }
 
-.hero h1{
-font-size:34px;
-line-height:1;
-margin:0 0 10px;
-letter-spacing:-1.5px;
+.restaurant h1{
+    font-size:32px;
+    margin-bottom:7px;
 }
 
-.hero p{
-margin:0;
-color:#ccc;
-line-height:1.5;
+.restaurant p{
+    color:#777;
 }
 
-/* CATEGORIAS */
-
-.section-title{
-font-size:22px;
-margin:25px 0 15px;
-}
+/* =========================
+   CATEGORIAS
+========================= */
 
 .categories{
-display:flex;
-gap:10px;
-overflow-x:auto;
-padding-bottom:5px;
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    padding-bottom:15px;
+    margin-bottom:20px;
 }
 
 .category{
-background:#fff;
-border:1px solid #eee;
-padding:13px 18px;
-border-radius:15px;
-font-weight:800;
-white-space:nowrap;
-cursor:pointer;
+    border:none;
+    padding:11px 18px;
+    border-radius:30px;
+    background:#fff;
+    color:#333;
+    font-weight:bold;
+    cursor:pointer;
+    white-space:nowrap;
 }
 
 .category.active{
-background:#111;
-color:#fff;
+    background:#f97316;
+    color:white;
 }
 
-/* PRODUTOS */
+/* =========================
+   PRODUTOS
+========================= */
 
 .products{
-display:grid;
-gap:15px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
 }
 
 .product-card{
-background:#fff;
-border-radius:22px;
-overflow:hidden;
-border:1px solid #eee;
-box-shadow:0 5px 20px #00000008;
+    background:#fff;
+    border-radius:22px;
+    padding:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.07);
+    transition:.2s;
+}
+
+.product-card:hover{
+    transform:translateY(-3px);
 }
 
 .product-image{
-height:190px;
-background:#e8e5df;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:90px;
+    height:190px;
+    background:#f0ede8;
+    border-radius:17px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:80px;
+    margin-bottom:15px;
 }
 
-.product-info{
-padding:18px;
+.product-info h2{
+    font-size:20px;
+    margin-bottom:6px;
 }
 
-.product-name{
-font-size:21px;
-font-weight:900;
-margin-bottom:5px;
-}
-
-.product-description{
-font-size:14px;
-color:#707070;
-line-height:1.4;
-margin-bottom:15px;
-}
-
-.product-bottom{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:10px;
+.product-info p{
+    color:#777;
+    font-size:14px;
+    line-height:1.4;
+    margin-bottom:12px;
 }
 
 .price{
-font-size:19px;
-font-weight:900;
+    font-size:21px;
+    font-weight:900;
+    color:#f97316;
+    margin-bottom:13px;
 }
 
 .view-button{
-background:#111;
-color:#fff;
-border:0;
-border-radius:13px;
-padding:12px 16px;
-font-weight:900;
-cursor:pointer;
+    width:100%;
+    border:none;
+    background:#f97316;
+    color:white;
+    padding:14px;
+    border-radius:13px;
+    font-weight:900;
+    cursor:pointer;
+    font-size:15px;
 }
 
-/* PRODUTO */
+/* =========================
+   PÁGINA DO PRODUTO
+========================= */
 
-#productPage{
-display:none;
+.product-page{
+    display:none;
 }
 
-.back{
-border:0;
-background:none;
-font-size:15px;
-font-weight:800;
-padding:5px 0 18px;
-cursor:pointer;
+.back-button{
+    border:none;
+    background:white;
+    padding:11px 16px;
+    border-radius:12px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-bottom:18px;
 }
+
+.product-title{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.product-title h1{
+    font-size:30px;
+    margin-bottom:5px;
+}
+
+.product-title p{
+    color:#777;
+}
+
+/* =========================
+   MODEL VIEWER
+========================= */
 
 model-viewer{
-width:100%;
-height:430px;
-background:linear-gradient(#f0ede8,#d9d4cc);
-border-radius:25px;
-overflow:hidden;
+    width:100%;
+    height:430px;
+    background:linear-gradient(#f0ede8,#d9d4cc);
+    border-radius:25px;
+    overflow:hidden;
 }
+
+/*
+   BOTÃO REAL DE AR
+   O !important ajuda a garantir
+   a aplicação da cor no celular.
+*/
+
+.ar-button{
+    background:#f97316 !important;
+    color:#fff !important;
+    border:none !important;
+    border-radius:15px !important;
+    font-weight:900 !important;
+    padding:15px 20px !important;
+    font-size:16px !important;
+    box-shadow:0 5px 15px rgba(0,0,0,.20);
+    cursor:pointer;
+}
+
+/* Caso o model-viewer utilize
+   o botão padrão */
 
 model-viewer::part(default-ar-button){
-background:#f97316;
-color:white;
-border-radius:15px;
-font-weight:900;
-padding:15px 20px;
+    background:#f97316 !important;
+    color:white !important;
+    border:none !important;
+    border-radius:15px !important;
+    font-weight:900 !important;
+    padding:15px 20px !important;
 }
 
-.product-page-title{
-font-size:36px;
-line-height:1;
-margin:20px 0 8px;
-letter-spacing:-1px;
+/* =========================
+   INFORMAÇÕES
+========================= */
+
+.details{
+    background:#fff;
+    margin-top:20px;
+    padding:20px;
+    border-radius:20px;
 }
 
-.product-page-description{
-color:#666;
-line-height:1.5;
+.details h2{
+    margin-bottom:10px;
 }
 
-.dimensions{
-display:flex;
-gap:8px;
-margin:20px 0;
+.details p{
+    color:#666;
+    line-height:1.5;
 }
 
-.dimension{
-flex:1;
-background:#fff;
-border:1px solid #eee;
-border-radius:15px;
-padding:14px 8px;
-text-align:center;
+.measurements{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:18px;
 }
 
-.dimension b{
-display:block;
-font-size:18px;
+.measure{
+    background:#f7f7f7;
+    padding:15px 8px;
+    border-radius:13px;
+    text-align:center;
 }
 
-.dimension span{
-font-size:11px;
-color:#777;
-font-weight:700;
+.measure strong{
+    display:block;
+    color:#f97316;
+    font-size:18px;
+    margin-bottom:4px;
 }
 
-.price-large{
-font-size:25px;
-font-weight:900;
-margin:15px 0;
+.measure span{
+    font-size:12px;
+    color:#777;
 }
+
+/* =========================
+   PEDIDO
+========================= */
 
 .order-button{
-width:100%;
-border:0;
-background:#111;
-color:#fff;
-border-radius:16px;
-padding:17px;
-font-size:16px;
-font-weight:900;
-cursor:pointer;
-margin-top:10px;
+    width:100%;
+    margin-top:18px;
+    border:none;
+    background:#f97316;
+    color:white;
+    padding:17px;
+    border-radius:15px;
+    font-size:17px;
+    font-weight:900;
+    cursor:pointer;
 }
 
-.ar-info{
-background:#fff;
-border:1px solid #eee;
-border-radius:17px;
-padding:15px;
-margin-top:15px;
-font-size:13px;
-color:#666;
-line-height:1.5;
-text-align:center;
-}
+/* =========================
+   RESPONSIVO
+========================= */
 
-/* MOBILE */
+@media(max-width:600px){
 
-@media(max-width:450px){
+    header{
+        padding:15px;
+    }
 
-main{
-padding:15px;
-}
+    .container{
+        padding:20px 14px 40px;
+    }
 
-.hero h1{
-font-size:30px;
-}
+    .restaurant h1{
+        font-size:27px;
+    }
 
-.product-page-title{
-font-size:31px;
-}
+    .products{
+        grid-template-columns:1fr;
+    }
 
-model-viewer{
-height:390px;
-}
+    model-viewer{
+        height:380px;
+        border-radius:20px;
+    }
+
+    .measurements{
+        grid-template-columns:1fr 1fr 1fr;
+    }
+
+    .measure{
+        padding:13px 5px;
+    }
 
 }
 
@@ -303,456 +355,498 @@ height:390px;
 
 <body>
 
+<!-- =========================
+     CABEÇALHO
+========================= -->
+
 <header>
 
-<div class="logo">
-Prato<span>Real</span>
-</div>
+    <div class="logo">
+        PratoReal
+    </div>
 
-<button class="cart">
-🛒 0
-</button>
+    <button class="cart">
+        🛒 Carrinho
+    </button>
 
 </header>
 
 
-<!-- ========================= -->
-<!-- CARDÁPIO -->
-<!-- ========================= -->
+<!-- =========================
+     LISTA DE PRODUTOS
+========================= -->
 
-<main id="menuPage">
+<div class="container" id="menuPage">
 
-<section class="hero">
+    <div class="restaurant">
 
-<h1>
-Veja antes<br>
-de pedir.
-</h1>
+        <h1>🍽️ Nosso Menu</h1>
 
-<p>
-Explore nosso cardápio em 3D e veja o tamanho real dos pratos antes de fazer seu pedido.
-</p>
+        <p>
+            Veja seu prato em tamanho real antes de pedir.
+        </p>
 
-</section>
+    </div>
 
 
-<h2 class="section-title">
-Categorias
-</h2>
+    <!-- CATEGORIAS -->
 
-<div class="categories">
+    <div class="categories">
 
-<button class="category active"
-onclick="filterProducts('todos',this)">
-Todos
-</button>
+        <button
+        class="category active"
+        onclick="filtrar('todos',this)">
+            Todos
+        </button>
 
-<button class="category"
-onclick="filterProducts('pizzas',this)">
-🍕 Pizzas
-</button>
+        <button
+        class="category"
+        onclick="filtrar('pizzas',this)">
+            🍕 Pizzas
+        </button>
 
-<button class="category"
-onclick="filterProducts('hamburgueres',this)">
-🍔 Hambúrgueres
-</button>
+        <button
+        class="category"
+        onclick="filtrar('hamburgueres',this)">
+            🍔 Hambúrgueres
+        </button>
 
-</div>
-
-
-<h2 class="section-title">
-Cardápio
-</h2>
-
-<div class="products" id="productsContainer"></div>
-
-</main>
+    </div>
 
 
+    <!-- PRODUTOS -->
 
-<!-- ========================= -->
-<!-- PÁGINA DO PRODUTO -->
-<!-- ========================= -->
-
-<main id="productPage">
-
-<button class="back" onclick="backToMenu()">
-← Voltar ao cardápio
-</button>
-
-
-<model-viewer
-id="modelViewer"
-
-src=""
-
-camera-controls
-auto-rotate
-
-ar
-ar-modes="webxr scene-viewer quick-look"
-
-shadow-intensity="1"
-
-exposure="1"
-
-scale="1 1 1"
-
-alt="Modelo 3D do prato">
-<button slot="ar-button" class="ar-button" style="font-size: 20px;">
-
-📱 Ver tamanho real na minha mesa
-
-</button>
-</model-viewer>
-
-
-<h1
-id="productName"
-class="product-page-title">
-</h1>
-
-
-<p
-id="productDescription"
-class="product-page-description">
-</p>
-
-
-<div class="dimensions">
-
-<div class="dimension">
-
-<b id="productWidth">
-</b>
-
-<span>
-LARGURA
-</span>
+    <div
+    class="products"
+    id="products">
+    </div>
 
 </div>
 
 
-<div class="dimension">
+<!-- =========================
+     PÁGINA DO PRODUTO
+========================= -->
 
-<b id="productHeight">
-</b>
+<div class="container product-page" id="productPage">
 
-<span>
-ALTURA
-</span>
+    <button
+    class="back-button"
+    onclick="voltarMenu()">
+        ← Voltar ao menu
+    </button>
+
+
+    <div class="product-title">
+
+        <h1 id="productName">
+            Produto
+        </h1>
+
+        <p id="productDescription">
+            Descrição
+        </p>
+
+    </div>
+
+
+    <!-- MODELO 3D + AR -->
+
+    <model-viewer
+        id="viewer"
+        src=""
+        camera-controls
+        auto-rotate
+        ar
+        ar-modes="webxr scene-viewer quick-look"
+        shadow-intensity="1"
+        exposure="1"
+        scale="1 1 1"
+        alt="Modelo 3D do prato">
+
+        <!-- BOTÃO AR -->
+
+        <button
+        slot="ar-button"
+        class="ar-button">
+
+            📱 Ver tamanho real na minha mesa
+
+        </button>
+
+    </model-viewer>
+
+
+    <!-- INFORMAÇÕES -->
+
+    <div class="details">
+
+        <h2 id="detailsTitle">
+            Sobre o prato
+        </h2>
+
+        <p id="detailsDescription">
+        </p>
+
+
+        <div class="measurements">
+
+            <div class="measure">
+
+                <strong id="width">
+                    --
+                </strong>
+
+                <span>
+                    Largura
+                </span>
+
+            </div>
+
+
+            <div class="measure">
+
+                <strong id="height">
+                    --
+                </strong>
+
+                <span>
+                    Altura
+                </span>
+
+            </div>
+
+
+            <div class="measure">
+
+                <strong id="weight">
+                    --
+                </strong>
+
+                <span>
+                    Peso
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div
+        class="price"
+        id="productPrice"
+        style="margin-top:20px;">
+        </div>
+
+
+        <button
+        class="order-button"
+        onclick="adicionarCarrinho()">
+
+            🛒 Adicionar ao pedido
+
+        </button>
+
+    </div>
 
 </div>
-
-
-<div class="dimension">
-
-<b id="productWeight">
-</b>
-
-<span>
-PESO
-</span>
-
-</div>
-
-</div>
-
-
-<div
-id="productPrice"
-class="price-large">
-</div>
-
-
-<button class="order-button">
-
-🛒 Adicionar ao pedido
-
-</button>
-
-
-<div class="ar-info">
-
-📱 <strong>Experimente em tamanho real</strong>
-
-<br>
-
-Toque no botão acima e a câmera do seu celular poderá colocar o prato virtualmente sobre a sua mesa.
-
-</div>
-
-</main>
-
 
 
 <script>
 
-/* =========================================
+/* ==========================================
    PRODUTOS
-========================================= */
+========================================== */
 
 const produtos = [
 
-{
-id:1,
+    {
+        id:1,
 
-nome:"Pizza Especial",
+        nome:"Pizza Especial",
 
-categoria:"pizzas",
+        categoria:"pizzas",
 
-modelo:"assets/pizza.glb",
+        modelo:"assets/pizza.glb",
 
-emoji:"🍕",
+        emoji:"🍕",
 
-descricao:
-"Pizza especial com ingredientes selecionados e massa artesanal.",
+        descricao:
+        "Pizza especial com ingredientes selecionados e massa artesanal.",
 
-preco:"R$ 39,90",
+        preco:"R$ 39,90",
 
-largura:"30 cm",
+        largura:"30 cm",
 
-altura:"5 cm",
+        altura:"5 cm",
 
-peso:"~500 g"
-},
+        peso:"~500 g"
+    },
 
 
-{
-id:2,
+    {
+        id:2,
 
-nome:"Hambúrguer com Fritas",
+        nome:"Hambúrguer com Fritas",
 
-categoria:"hamburgueres",
+        categoria:"hamburgueres",
 
-modelo:"assets/hamburguer-fritas.glb",
+        modelo:"assets/hamburguer-fritas.glb",
 
-emoji:"🍔",
+        emoji:"🍔",
 
-descricao:
-"Hambúrguer artesanal acompanhado de uma porção de batatas crocantes.",
+        descricao:
+        "Hambúrguer artesanal acompanhado de uma porção de batatas crocantes.",
 
-preco:"R$ 32,90",
+        preco:"R$ 32,90",
 
-largura:"15 cm",
+        largura:"15 cm",
 
-altura:"10 cm",
+        altura:"10 cm",
 
-peso:"~550 g"
-}
+        peso:"~550 g"
+    }
 
 ];
 
 
-/* =========================================
-   MOSTRAR PRODUTOS
-========================================= */
+/* ==========================================
+   ELEMENTOS
+========================================== */
 
-function renderProducts(lista = produtos){
+const productsContainer =
+document.getElementById("products");
 
-const container =
-document.getElementById("productsContainer");
+const menuPage =
+document.getElementById("menuPage");
 
-container.innerHTML = "";
-
-
-lista.forEach(produto => {
-
-const card = document.createElement("article");
-
-card.className = "product-card";
-
-
-card.innerHTML = `
-
-<div class="product-image">
-
-${produto.emoji}
-
-</div>
-
-<div class="product-info">
-
-<div class="product-name">
-
-${produto.nome}
-
-</div>
-
-<div class="product-description">
-
-${produto.descricao}
-
-</div>
-
-<div class="product-bottom">
-
-<span class="price">
-
-${produto.preco}
-
-</span>
-
-<button
-class="view-button"
-onclick="openProduct(${produto.id})">
-
-Ver prato
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-container.appendChild(card);
-
-});
-
-}
-
-
-/* =========================================
-   FILTRO
-========================================= */
-
-function filterProducts(categoria,botao){
-
-document
-.querySelectorAll(".category")
-.forEach(btn=>{
-btn.classList.remove("active");
-});
-
-botao.classList.add("active");
-
-
-if(categoria === "todos"){
-
-renderProducts(produtos);
-
-}else{
-
-renderProducts(
-produtos.filter(
-produto =>
-produto.categoria === categoria
-)
-);
-
-}
-
-}
-
-
-/* =========================================
-   ABRIR PRODUTO
-========================================= */
-
-function openProduct(id){
-
-const produto =
-produtos.find(
-p => p.id === id
-);
-
-
-document
-.getElementById("menuPage")
-.style.display = "none";
-
-
-document
-.getElementById("productPage")
-.style.display = "block";
-
+const productPage =
+document.getElementById("productPage");
 
 const viewer =
-document.getElementById("modelViewer");
+document.getElementById("viewer");
 
 
-viewer.src =
-produto.modelo;
+/* ==========================================
+   MOSTRAR PRODUTOS
+========================================== */
+
+function mostrarProdutos(lista){
+
+    productsContainer.innerHTML = "";
 
 
-viewer.alt =
-produto.nome;
+    lista.forEach(produto => {
+
+        const card =
+        document.createElement("div");
+
+        card.className =
+        "product-card";
 
 
-document
-.getElementById("productName")
-.textContent =
-produto.nome;
+        card.innerHTML = `
+
+            <div class="product-image">
+
+                ${produto.emoji}
+
+            </div>
 
 
-document
-.getElementById("productDescription")
-.textContent =
-produto.descricao;
+            <div class="product-info">
+
+                <h2>
+                    ${produto.nome}
+                </h2>
+
+                <p>
+                    ${produto.descricao}
+                </p>
+
+                <div class="price">
+                    ${produto.preco}
+                </div>
+
+                <button
+                class="view-button"
+                onclick="abrirProduto(${produto.id})">
+
+                    👀 Ver prato
+
+                </button>
+
+            </div>
+
+        `;
 
 
-document
-.getElementById("productWidth")
-.textContent =
-produto.largura;
+        productsContainer.appendChild(card);
 
-
-document
-.getElementById("productHeight")
-.textContent =
-produto.altura;
-
-
-document
-.getElementById("productWeight")
-.textContent =
-produto.peso;
-
-
-document
-.getElementById("productPrice")
-.textContent =
-produto.preco;
-
-
-window.scrollTo(0,0);
+    });
 
 }
 
 
-/* =========================================
+/* ==========================================
+   FILTRAR CATEGORIA
+========================================== */
+
+function filtrar(categoria, botao){
+
+    document
+    .querySelectorAll(".category")
+    .forEach(btn => {
+
+        btn.classList.remove("active");
+
+    });
+
+
+    botao.classList.add("active");
+
+
+    if(categoria === "todos"){
+
+        mostrarProdutos(produtos);
+
+    }else{
+
+        const filtrados =
+        produtos.filter(
+            produto =>
+            produto.categoria === categoria
+        );
+
+        mostrarProdutos(filtrados);
+
+    }
+
+}
+
+
+/* ==========================================
+   ABRIR PRODUTO
+========================================== */
+
+function abrirProduto(id){
+
+    const produto =
+    produtos.find(
+        p => p.id === id
+    );
+
+
+    if(!produto) return;
+
+
+    document.getElementById("productName")
+    .textContent =
+    produto.nome;
+
+
+    document.getElementById("productDescription")
+    .textContent =
+    produto.descricao;
+
+
+    document.getElementById("detailsDescription")
+    .textContent =
+    produto.descricao;
+
+
+    document.getElementById("productPrice")
+    .textContent =
+    produto.preco;
+
+
+    document.getElementById("width")
+    .textContent =
+    produto.largura;
+
+
+    document.getElementById("height")
+    .textContent =
+    produto.altura;
+
+
+    document.getElementById("weight")
+    .textContent =
+    produto.peso;
+
+
+    /*
+       Carrega o GLB correspondente
+    */
+
+    viewer.src =
+    produto.modelo;
+
+
+    /*
+       Esconde menu
+       e abre produto
+    */
+
+    menuPage.style.display =
+    "none";
+
+
+    productPage.style.display =
+    "block";
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* ==========================================
    VOLTAR
-========================================= */
+========================================== */
 
-function backToMenu(){
+function voltarMenu(){
 
-document
-.getElementById("productPage")
-.style.display = "none";
-
-
-document
-.getElementById("menuPage")
-.style.display = "block";
+    productPage.style.display =
+    "none";
 
 
-document
-.getElementById("modelViewer")
-.removeAttribute("src");
+    menuPage.style.display =
+    "block";
 
 
-window.scrollTo(0,0);
+    viewer.src = "";
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 
 }
 
 
-/* =========================================
-   INICIAR
-========================================= */
+/* ==========================================
+   CARRINHO
+========================================== */
 
-renderProducts();
+function adicionarCarrinho(){
+
+    alert(
+        "🍽️ Produto adicionado ao carrinho!"
+    );
+
+}
+
+
+/* ==========================================
+   INICIALIZAÇÃO
+========================================== */
+
+mostrarProdutos(produtos);
 
 </script>
 
