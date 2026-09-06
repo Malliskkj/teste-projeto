@@ -1,0 +1,219 @@
+/* PRATO REAL - CSS PRINCIPAL */
+/* Para mudar a cor geral, altere apenas --primary */
+:root {
+  --primary: #f97316;
+  --background: #f5f5f5;
+  --white: #ffffff;
+  --text: #222222;
+  --muted: #777777;
+  --light: #f0ede8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  color: var(--text);
+}
+
+header {
+  background: var(--white);
+  padding: 18px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo { font-size: 25px; font-weight: 900; color: var(--primary); }
+
+.cart, .view-button, .order-button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.cart {
+  padding: 11px 16px;
+  border-radius: 12px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 25px 18px 50px;
+}
+
+.restaurant { text-align: center; margin-bottom: 25px; }
+.restaurant h1 { font-size: 32px; margin-bottom: 7px; }
+.restaurant p { color: var(--muted); }
+
+.categories {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.category {
+  border: none;
+  padding: 11px 18px;
+  border-radius: 30px;
+  background: var(--white);
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.category.active { background: var(--primary); color: white; }
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background: var(--white);
+  border-radius: 22px;
+  padding: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.07);
+  transition: .2s;
+}
+
+.product-card:hover { transform: translateY(-3px); }
+
+.product-image {
+  height: 190px;
+  background: var(--light);
+  border-radius: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 80px;
+  margin-bottom: 15px;
+}
+
+.product-info h2 { font-size: 20px; margin-bottom: 6px; }
+.product-info p { color: var(--muted); font-size: 14px; line-height: 1.4; margin-bottom: 12px; }
+
+.price {
+  font-size: 21px;
+  font-weight: 900;
+  color: var(--primary);
+  margin-bottom: 13px;
+}
+
+.view-button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 13px;
+  font-size: 15px;
+}
+
+.product-page { display: none; }
+
+.back-button {
+  border: none;
+  background: var(--white);
+  padding: 11px 16px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 18px;
+}
+
+.product-title { text-align: center; margin-bottom: 15px; }
+.product-title h1 { font-size: 30px; margin-bottom: 5px; }
+.product-title p { color: var(--muted); }
+
+model-viewer {
+  width: 100%;
+  height: 430px;
+  background: linear-gradient(#f0ede8, #d9d4cc);
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+/* BOTÃO REAL DE AR */
+.ar-button {
+  background: var(--primary) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 15px !important;
+  font-weight: 900 !important;
+  padding: 15px 20px !important;
+  font-size: 16px !important;
+  box-shadow: 0 5px 15px rgba(0,0,0,.20);
+  cursor: pointer;
+}
+
+model-viewer::part(default-ar-button) {
+  background: var(--primary) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 15px !important;
+  font-weight: 900 !important;
+  padding: 15px 20px !important;
+}
+
+.details {
+  background: var(--white);
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.details h2 { margin-bottom: 10px; }
+.details p { color: #666; line-height: 1.5; }
+
+.measurements {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.measure {
+  background: #f7f7f7;
+  padding: 15px 8px;
+  border-radius: 13px;
+  text-align: center;
+}
+
+.measure strong {
+  display: block;
+  color: var(--primary);
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.measure span { font-size: 12px; color: var(--muted); }
+
+.product-detail-price { margin-top: 20px; }
+
+.order-button {
+  width: 100%;
+  margin-top: 18px;
+  padding: 17px;
+  border-radius: 15px;
+  font-size: 17px;
+}
+
+@media (max-width: 600px) {
+  header { padding: 15px; }
+  .container { padding: 20px 14px 40px; }
+  .restaurant h1 { font-size: 27px; }
+  .products { grid-template-columns: 1fr; }
+  model-viewer { height: 380px; border-radius: 20px; }
+  .measurements { grid-template-columns: 1fr 1fr 1fr; }
+  .measure { padding: 13px 5px; }
+}

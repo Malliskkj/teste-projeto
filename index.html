@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prato Real</title>
+<link rel="stylesheet" href="style.css">
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.1.0/model-viewer.min.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="logo">PratoReal</div>
+  <button class="cart">🛒 Carrinho</button>
+</header>
+
+<div class="container" id="menuPage">
+  <div class="restaurant">
+    <h1>🍽️ Nosso Menu</h1>
+    <p>Veja seu prato em tamanho real antes de pedir.</p>
+  </div>
+
+  <div class="categories">
+    <button class="category active" onclick="filtrar('todos', this)">Todos</button>
+    <button class="category" onclick="filtrar('pizzas', this)">🍕 Pizzas</button>
+    <button class="category" onclick="filtrar('hamburgueres', this)">🍔 Hambúrgueres</button>
+  </div>
+
+  <div class="products" id="products"></div>
+</div>
+
+<div class="container product-page" id="productPage">
+  <button class="back-button" onclick="voltarMenu()">← Voltar ao menu</button>
+
+  <div class="product-title">
+    <h1 id="productName">Produto</h1>
+    <p id="productDescription">Descrição</p>
+  </div>
+
+  <model-viewer id="viewer" src="" camera-controls auto-rotate ar
+    ar-modes="webxr scene-viewer quick-look" shadow-intensity="1"
+    exposure="1" scale="1 1 1" alt="Modelo 3D do prato">
+    <button slot="ar-button" class="ar-button">📱 Ver tamanho real na minha mesa</button>
+  </model-viewer>
+
+  <div class="details">
+    <h2>Sobre o prato</h2>
+    <p id="detailsDescription"></p>
+
+    <div class="measurements">
+      <div class="measure"><strong id="width">--</strong><span>Largura</span></div>
+      <div class="measure"><strong id="height">--</strong><span>Altura</span></div>
+      <div class="measure"><strong id="weight">--</strong><span>Peso</span></div>
+    </div>
+
+    <div class="price product-detail-price" id="productPrice"></div>
+    <button class="order-button" onclick="adicionarCarrinho()">🛒 Adicionar ao pedido</button>
+  </div>
+</div>
+
+<script>
+const produtos = [
+  {
+    id: 1,
+    nome: "Pizza Especial",
+    categoria: "pizzas",
+    modelo: "assets/pizza.glb",
+    emoji: "🍕",
+    descricao: "Pizza especial com ingredientes selecionados e massa artesanal.",
+    preco: "R$ 39,90",
+    largura: "30 cm",
+    altura: "5 cm",
+    peso: "~500 g"
+  },
+  {
+    id: 2,
+    nome: "Hambúrguer com Fritas",
+    categoria: "hamburgueres",
+    modelo: "assets/hamburguer-fritas.glb",
+    emoji: "🍔",
+    descricao: "Hambúrguer artesanal acompanhado de uma porção de batatas crocantes.",
+    preco: "R$ 32,90",
+    largura: "15 cm",
+    altura: "10 cm",
+    peso: "~550 g"
+  }
+];
+
+const productsContainer = document.getElementById("products");
+const menuPage = document.getElementById("menuPage");
+const productPage = document.getElementById("productPage");
+const viewer = document.getElementById("viewer");
+
+function mostrarProdutos(lista) {
+  productsContainer.innerHTML = "";
+  lista.forEach(produto => {
+    const card = document.createElement("div");
+    card.className = "product-card";
+    card.innerHTML = `
+      <div class="product-image">${produto.emoji}</div>
+      <div class="product-info">
+        <h2>${produto.nome}</h2>
+        <p>${produto.descricao}</p>
+        <div class="price">${produto.preco}</div>
+        <button class="view-button" onclick="abrirProduto(${produto.id})">👀 Ver prato</button>
+      </div>`;
+    productsContainer.appendChild(card);
+  });
+}
+
+function filtrar(categoria, botao) {
+  document.querySelectorAll(".category").forEach(btn => btn.classList.remove("active"));
+  botao.classList.add("active");
+  mostrarProdutos(categoria === "todos"
+    ? produtos
+    : produtos.filter(produto => produto.categoria === categoria));
+}
+
+function abrirProduto(id) {
+  const produto = produtos.find(p => p.id === id);
+  if (!produto) return;
+
+  document.getElementById("productName").textContent = produto.nome;
+  document.getElementById("productDescription").textContent = produto.descricao;
+  document.getElementById("detailsDescription").textContent = produto.descricao;
+  document.getElementById("productPrice").textContent = produto.preco;
+  document.getElementById("width").textContent = produto.largura;
+  document.getElementById("height").textContent = produto.altura;
+  document.getElementById("weight").textContent = produto.peso;
+  viewer.src = produto.modelo;
+
+  menuPage.style.display = "none";
+  productPage.style.display = "block";
+  window.scrollTo({top: 0, behavior: "smooth"});
+}
+
+function voltarMenu() {
+  productPage.style.display = "none";
+  menuPage.style.display = "block";
+  viewer.src = "";
+  window.scrollTo({top: 0, behavior: "smooth"});
+}
+
+function adicionarCarrinho() {
+  alert("🍽️ Produto adicionado ao carrinho!");
+}
+
+mostrarProdutos(produtos);
+</script>
+
+</body>
+</html>
